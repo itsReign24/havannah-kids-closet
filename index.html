@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Havannah Kids Closet — Quality Thrift Clothes for Kids | Mombasa, Kenya</title>
+<meta name="description" content="Havannah Kids Closet — affordable quality mitumba (thrift) clothes for kids. Based in Mombasa, delivered countrywide at a fee. Pay securely via M-Pesa.">
+<style>
+  :root{
+    --green:#17804a; --green-dark:#0e5c34; --mint:#e8f6ee;
+    --gold:#f6a821; --gold-soft:#fdeed3;
+    --ink:#22272e; --paper:#fbfaf7; --soft:#f3f0e9; --line:#e6e1d5;
+    --danger:#c0392b; --radius:18px;
+    --shadow:0 6px 24px rgba(34,39,46,.09);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+  img{max-width:100%;display:block}
+  a{text-decoration:none;color:inherit}
+  button{font-family:inherit}
+  .container{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* ---------- Header ---------- */
+  header{position:sticky;top:0;background:rgba(251,250,247,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:50}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1.18rem;letter-spacing:.3px}
+  .logo .mark{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--green),var(--green-dark));display:flex;align-items:center;justify-content:center;font-size:1.15rem}
+  .logo em{font-style:normal;color:var(--green)}
+  .nav ul{display:flex;gap:24px;list-style:none;align-items:center}
+  .nav ul a{font-weight:600;font-size:.93rem;color:#4a4f57;transition:color .15s}
+  .nav ul a:hover{color:var(--green)}
+  .cart-btn{position:relative;background:var(--green);color:#fff;border:none;border-radius:24px;padding:9px 18px;font-weight:700;cursor:pointer;transition:background .15s,transform .15s}
+  .cart-btn:hover{background:var(--green-dark);transform:translateY(-1px)}
+  .cart-btn .count{position:absolute;top:-7px;right:-7px;background:var(--gold);color:var(--ink);border-radius:50%;min-width:21px;height:21px;font-size:.72rem;display:flex;align-items:center;justify-content:center;font-weight:800;padding:0 5px}
+  @media(max-width:760px){.nav ul{gap:14px}.nav ul li.hide-m{display:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{background:linear-gradient(135deg,var(--green) 0%,var(--green-dark) 100%);color:#fff;padding:74px 0;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:rgba(246,168,33,.15)}
+  .hero::before{content:"";position:absolute;right:80px;bottom:-140px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.07)}
+  .hero-inner{display:flex;gap:44px;align-items:center;flex-wrap:wrap;position:relative;z-index:1}
+  .hero h1{font-size:2.7rem;line-height:1.14;margin-bottom:16px}
+  .hero h1 .hl{color:var(--gold)}
+  .hero p{font-size:1.08rem;opacity:.93;max-width:520px;margin-bottom:28px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--ink);font-weight:800;padding:14px 30px;border-radius:30px;border:none;cursor:pointer;font-size:1rem;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.22)}
+  .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,.75);color:#fff;box-shadow:none;margin-left:10px}
+  .btn.ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .hero-art{flex:1;min-width:260px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:26px;padding:44px 30px;text-align:center;font-size:4.2rem;backdrop-filter:blur(4px)}
+  @media(max-width:760px){.hero h1{font-size:2rem}.hero-art{display:none}}
+
+  .badges{background:#fff;border-bottom:1px solid var(--line)}
+  .badges .container{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;padding:18px 20px}
+  .badge{display:flex;align-items:center;gap:9px;font-weight:600;font-size:.9rem;color:#3c4149}
+
+  /* ---------- Sections ---------- */
+  section{padding:60px 0}
+  .section-title{text-align:center;font-size:1.9rem;margin-bottom:8px}
+  .section-sub{text-align:center;color:#7a7f87;margin-bottom:32px}
+
+  .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+  .chip{background:#fff;border:1.5px solid var(--line);color:#4a4f57;border-radius:22px;padding:8px 20px;font-weight:700;cursor:pointer;font-size:.88rem;transition:all .15s}
+  .chip.active,.chip:hover{background:var(--green);border-color:var(--green);color:#fff}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:22px}
+  .card{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 8px rgba(34,39,46,.05);display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .card .img{height:172px;display:flex;align-items:center;justify-content:center;font-size:3.6rem;background:linear-gradient(160deg,var(--mint),#fff)}
+  .card .body{padding:16px 16px 18px;flex:1;display:flex;flex-direction:column}
+  .card h3{font-size:1rem;margin-bottom:3px}
+  .card .size{color:#8a8f97;font-size:.84rem}
+  .tag{display:inline-block;background:var(--gold-soft);color:#8a5b00;font-size:.7rem;font-weight:800;border-radius:8px;padding:2px 8px;margin-top:8px;width:fit-content}
+  .card .price-row{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:14px}
+  .price{color:var(--green);font-weight:800;font-size:1.14rem}
+  .add{background:var(--green);color:#fff;border:none;border-radius:12px;padding:9px 16px;font-weight:700;cursor:pointer;transition:background .15s,transform .1s}
+  .add:hover{background:var(--green-dark)}
+  .add:active{transform:scale(.95)}
+
+  /* ---------- How it works ---------- */
+  .how{background:linear-gradient(160deg,var(--green),var(--green-dark));color:#fff}
+  .how .section-sub{color:#cfe8da}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;margin-top:34px}
+  .step{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);padding:28px 22px;text-align:center;transition:transform .18s,background .18s}
+  .step:hover{transform:translateY(-4px);background:rgba(255,255,255,.16)}
+  .step .num{width:44px;height:44px;margin:0 auto 12px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:1.2rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .step h3{margin-bottom:6px;font-size:1.05rem}
+  .step p{font-size:.9rem;opacity:.9}
+
+  /* ---------- Payment ---------- */
+  .pay{background:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:var(--shadow);max-width:660px;margin:0 auto}
+  .pay h3{margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .pay code{background:var(--soft);padding:3px 10px;border-radius:8px;font-weight:700}
+  .pay p{margin-bottom:6px;color:#4a4f57}
+  .lock-note{margin-top:18px;background:var(--mint);border-radius:12px;padding:14px 16px;font-size:.88rem;color:#2c5b41;display:flex;gap:10px;align-items:flex-start}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+  .contact-card{background:#fff;border-radius:var(--radius);padding:28px 20px;border:1px solid var(--line);text-align:center;transition:transform .18s,box-shadow .18s}
+  .contact-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  a.contact-card{display:block;cursor:pointer}
+  a.contact-card:hover h3{color:var(--green)}
+  .contact-card .big{font-size:2.1rem;margin-bottom:8px}
+  .contact-card h3{margin-bottom:5px}
+  .contact-card p{color:#7a7f87;font-size:.92rem}
+
+  footer{background:var(--ink);color:#b9bec6;padding:32px 0;text-align:center;font-size:.9rem}
+  footer a{color:var(--gold)}
+
+  /* ---------- Cart drawer ---------- */
+  .cart-drawer{position:fixed;right:-400px;top:0;width:380px;max-width:94vw;height:100%;background:var(--paper);box-shadow:-6px 0 30px rgba(0,0,0,.22);transition:right .28s cubic-bezier(.4,0,.2,1);z-index:100;display:flex;flex-direction:column}
+  .cart-drawer.open{right:0}
+  .cart-head{background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center}
+  .cart-head button{background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer}
+  .cart-items{flex:1;overflow-y:auto;padding:16px 18px}
+  .cart-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+  .cart-item button{background:none;border:none;color:var(--danger);font-weight:700;cursor:pointer;font-size:1rem}
+  .cart-foot{padding:16px 18px;border-top:2px solid var(--soft);background:#fff}
+  .cart-total{display:flex;justify-content:space-between;font-weight:800;margin-bottom:12px;font-size:1.05rem}
+  .checkout-btn{width:100%;background:var(--gold);border:none;border-radius:14px;padding:15px;font-weight:800;font-size:1rem;cursor:pointer;transition:transform .12s,box-shadow .15s;box-shadow:0 4px 12px rgba(246,168,33,.4)}
+  .checkout-btn:hover{transform:translateY(-2px)}
+  .empty{color:#989da5;text-align:center;margin-top:36px}
+
+  /* ---------- Checkout form ---------- */
+  .co-form{margin-top:16px;border-top:2px solid var(--soft);padding-top:16px;display:none}
+  .co-form.show{display:block}
+  .co-form h4{font-size:.95rem;margin-bottom:10px;color:var(--green-dark)}
+  .field{margin-bottom:11px}
+  .field label{display:block;font-size:.78rem;font-weight:700;color:#5a5f67;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
+  .field input,.field select,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:10px 13px;font-size:.93rem;font-family:inherit;background:#fff;color:var(--ink);transition:border .15s,box-shadow .15s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(23,128,74,.12)}
+  .field .err{color:var(--danger);font-size:.76rem;margin-top:3px;display:none}
+  .field.invalid input,.field.invalid select{border-color:var(--danger)}
+  .field.invalid .err{display:block}
+  .radio-row{display:flex;gap:8px;flex-wrap:wrap}
+  .radio-card{flex:1;min-width:100px;border:1.5px solid var(--line);border-radius:12px;padding:10px;cursor:pointer;text-align:center;font-size:.83rem;font-weight:700;color:#5a5f67;transition:all .15s;background:#fff}
+  .radio-card small{display:block;font-weight:500;color:#8a8f97}
+  .radio-card.sel{border-color:var(--green);background:var(--mint);color:var(--green-dark)}
+  .fee-line{display:flex;justify-content:space-between;font-size:.88rem;color:#5a5f67;margin:4px 0}
+  .grand{display:flex;justify-content:space-between;font-weight:800;font-size:1.08rem;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+  .privacy-note{font-size:.75rem;color:#8a8f97;margin-top:10px;display:flex;gap:6px;align-items:flex-start}
+  .send-btn{width:100%;background:var(--green);color:#fff;border:none;border-radius:14px;padding:14px;font-weight:800;font-size:.98rem;cursor:pointer;margin-top:10px;transition:background .15s,transform .12s}
+  .send-btn:hover{background:var(--green-dark)}
+  .send-btn:active{transform:scale(.98)}
+
+  .overlay{position:fixed;inset:0;background:rgba(20,24,28,.45);backdrop-filter:blur(2px);display:none;z-index:99}
+  .overlay.show{display:block}
+
+  /* ---------- Phone prompt modal ---------- */
+  .modal{position:fixed;inset:0;background:rgba(20,24,28,.5);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:150;padding:20px}
+  .modal.show{display:flex}
+  .modal-box{background:var(--paper);border-radius:20px;max-width:380px;width:100%;padding:28px 24px;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:pop .25s cubic-bezier(.34,1.4,.64,1)}
+  @keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+  .modal-box h3{margin-bottom:6px}
+  .modal-box p{font-size:.88rem;color:#7a7f87;margin-bottom:16px}
+  .modal-actions{display:flex;gap:10px;margin-top:16px}
+  .modal-actions .send-btn{margin-top:0;flex:1}
+  .modal-actions .cancel-btn{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:14px;font-weight:700;cursor:pointer;color:#5a5f67;padding:14px}
+  .modal-actions .cancel-btn:hover{border-color:#c9c3b5}
+
+  /* ---------- Toast ---------- */
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:12px 22px;border-radius:30px;font-size:.9rem;font-weight:600;opacity:0;transition:all .3s cubic-bezier(.4,0,.2,1);z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.3);pointer-events:none}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast.success{background:var(--green)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo"><span class="mark">👶</span>Havannah <em>Kids Closet</em></div>
+    <ul>
+      <li class="hide-m"><a href="#shop">Shop</a></li>
+      <li class="hide-m"><a href="#how">How it works</a></li>
+      <li class="hide-m"><a href="#payment">Payment</a></li>
+      <li class="hide-m"><a href="#contact">Contact</a></li>
+      <li><button class="cart-btn" onclick="openCart()">Basket <span class="count" id="cartCount">0</span></button></li>
+    </ul>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container hero-inner">
+    <div style="flex:2;min-width:280px">
+      <h1>Quality <span class="hl">mitumba</span> clothes for your little ones 👶</h1>
+      <p>Hand-picked Grade A & B kids' thrift wear — clean and affordable. Based in Mombasa, we deliver countrywide at a small fee. Dress your kids sharp for less!</p>
+      <a href="#shop" class="btn">Shop Now →</a>
+      <a href="#how" class="btn ghost">How it Works</a>
+    </div>
+    <div class="hero-art">👕👗🩳</div>
+  </div>
+</div>
+
+<div class="badges">
+  <div class="container">
+    <div class="badge">🇰🇪 Delivered countrywide</div>
+    <div class="badge">✅ Grade A quality checked</div>
+    <div class="badge">🔒 Safe ordering via WhatsApp</div>
+    <div class="badge">📱 M-Pesa accepted</div>
+    <div class="badge">🚚 Mombasa deliveries every Friday</div>
+  </div>
+</div>
+
+<section id="shop">
+  <div class="container">
+    <h2 class="section-title">Today's Stock</h2>
+    <p class="section-sub">Fresh bales every week — when it's gone, it's gone!</p>
+    <div class="filters" id="filters">
+      <button class="chip active" data-cat="all">All</button>
+      <button class="chip" data-cat="boys">Boys</button>
+      <button class="chip" data-cat="girls">Girls</button>
+      <button class="chip" data-cat="baby">Baby (0–2 yrs)</button>
+    </div>
+    <p style="text-align:center;font-size:.85rem;color:#8a8f97;margin:-18px 0 26px" id="stockCount"></p>
+    <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Ordering is easy — no app, no account needed</p>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Pick Items</h3><p>Browse stock and add items to your basket.</p></div>
+      <div class="step"><div class="num">2</div><h3>Enter Your Location</h3><p>Checkout asks for your name, phone & location — pick free pickup (Posta / Mwembe Naivas), Friday rider, or a bus parcel.</p></div>
+      <div class="step"><div class="num">3</div><h3>Confirm on WhatsApp</h3><p>Your full order is sent to our WhatsApp — we confirm availability & total.</p></div>
+      <div class="step"><div class="num">4</div><h3>Pay & Receive 🎉</h3><p>Pay via M-Pesa. Pick up free at Posta / Mwembe Naivas, get Friday rider delivery in Mombasa, or your Thursday bus parcel via Tahmeed / Mash Poa / Ena Coach.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="payment">
+  <div class="container">
+    <h2 class="section-title">Payment & Delivery</h2>
+    <p class="section-sub">Simple, safe and transparent</p>
+    <div class="pay">
+      <h3>💳 M-Pesa Payment</h3>
+      <p>Buy Goods Till: <code>1234567</code> (HAVANNAH KIDS CLOSET)</p>
+      <p style="margin-top:6px">We only ever ask for payment to this Till number — <strong>never</strong> to a personal number. Send your M-Pesa confirmation on WhatsApp after paying.</p>
+      <h3 style="margin-top:22px">🗓 Delivery Options & Schedule</h3>
+      <p>• <strong>FREE pickup (Mombasa):</strong> 📮 Posta (Mombasa CBD) or 🏬 Mwembe (Naivas Mall) — arrange day on WhatsApp</p>
+      <p>• <strong>Mombasa rider:</strong> every <strong>Friday</strong> — Island, Likoni, Nyali, Bamburi, Kisauni · <strong>KSh 150</strong></p>
+      <p>• <strong>Coast counties parcel:</strong> Thursdays twice a month via <strong>Tahmeed or Mash Poa</strong> only · bus rate + service fee</p>
+      <p>• <strong>Other counties parcel:</strong> Thursdays twice a month via <strong>Ena Coach, Mash Poa or Tahmeed</strong> · bus rate + service fee, paid on collection</p>
+      <p style="margin-top:8px;font-size:.88rem;color:#8a8f97">💡 Parcel fee = the bus company's current rate for your destination + a flat <strong>$0.50 (≈ KSh 65) service fee</strong>. The exact amount is calculated automatically at checkout once you pick your county and bus.</p>
+      <p style="margin-top:8px;font-size:.88rem;color:#8a8f97">🎵 Follow us on TikTok @havannahkidscloset — we announce the exact Thursday parcel dates & Friday routes there every week.</p>
+      <div class="lock-note">🔒 <span><strong>Your privacy is protected.</strong> This site collects no personal data, uses no cookies or trackers, and stores nothing on any server. Your order goes directly from your device to our WhatsApp over an encrypted connection. GitHub Pages serves this site over HTTPS.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--soft)">
+  <div class="container">
+    <h2 class="section-title">Talk to Us</h2>
+    <p class="section-sub">Questions about sizes, bales, or wholesale? Tuko hapa!</p>
+    <div class="contact-grid">
+      <a class="contact-card wa-link" href="#" target="_blank" rel="noopener"><div class="big">💬</div><h3>WhatsApp</h3><p>+254 7XX XXX XXX<br>Fastest response — tap to chat</p></a>
+      <a class="contact-card call-link" href="#"><div class="big">📞</div><h3>Call Us</h3><p>+254 7XX XXX XXX<br>Mon–Sat, 8am–7pm — tap to call</p></a>
+      <a class="contact-card sms-link" href="#"><div class="big">✉️</div><h3>Send SMS</h3><p>+254 7XX XXX XXX<br>Tap to open a text message</p></a>
+      <div class="contact-card"><div class="big">📍</div><h3>Pickup Point</h3><p>Mombasa Island<br>(arrange exact spot on WhatsApp)</p></div>
+      <div class="contact-card"><div class="big">🎵</div><h3>TikTok</h3><p><a href="https://tiktok.com/@havannahkidscloset" target="_blank" rel="noopener">@havannahkidscloset</a><br>Bale openings & behind the scenes 🎬</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© <span id="yr"></span> Havannah Kids Closet · Mombasa, Kenya</p>
+    <p style="margin-top:8px"><a href="https://tiktok.com/@havannahkidscloset" target="_blank" rel="noopener">🎵 TikTok</a> · <a class="wa-link" href="#" target="_blank" rel="noopener">💬 WhatsApp</a></p>
+    <p>Secured with HTTPS · No cookies, no trackers · Hosted free on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a></p>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<!-- Cart + Checkout drawer -->
+<div class="cart-drawer" id="cartDrawer" role="dialog" aria-label="Shopping basket and checkout">
+  <div class="cart-head"><strong>Your Basket 🧺</strong><button onclick="closeCart()" aria-label="Close">✕</button></div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-foot">
+    <div class="cart-total"><span>Items:</span><span id="cartTotal">KSh 0</span></div>
+
+    <button class="checkout-btn" id="coToggle" onclick="toggleCheckoutForm()">Proceed to Checkout →</button>
+
+    <!-- Checkout form -->
+    <div class="co-form" id="coForm">
+      <h4>📍 Delivery Details</h4>
+
+      <div class="field">
+        <label for="coName">Your Name *</label>
+        <input id="coName" type="text" maxlength="60" placeholder="e.g. Amina Said" autocomplete="name">
+        <div class="err">Please enter your name.</div>
+      </div>
+
+      <div class="field">
+        <label for="coPhone">Phone Number *</label>
+        <input id="coPhone" type="tel" maxlength="13" placeholder="07XX XXX XXX" autocomplete="tel">
+        <div class="err">Enter a valid Kenyan phone number (07XX / +2547XX).</div>
+      </div>
+
+      <div class="field">
+        <label>How do you want your order? *</label>
+        <div class="radio-row" id="deliveryOpts">
+          <div class="radio-card sel" data-fee="0" data-label="Pickup (Mombasa)">🏬 Pickup<small>Posta / Mwembe Naivas · Free</small></div>
+          <div class="radio-card" data-fee="150" data-label="Rider — Mombasa">🛵 Rider<small>Mombasa · KSh 150 · Fridays</small></div>
+          <div class="radio-card" data-fee="parcel" data-label="Parcel — Countrywide">📦 Parcel<small>Bus rate + $0.50 service fee</small></div>
+        </div>
+      </div>
+
+      <div class="field" id="countyField" style="display:none">
+        <label for="coCounty">County *</label>
+        <select id="coCounty">
+          <option value="">— Select your county —</option>
+        </select>
+        <div class="err">Please select your county.</div>
+      </div>
+
+      <div class="field" id="pickupField" style="display:none">
+        <label for="coPickup">Pickup Point *</label>
+        <select id="coPickup">
+          <option value="">— Choose pickup point —</option>
+          <option value="Posta (Mombasa CBD)">📮 Posta — Mombasa CBD</option>
+          <option value="Mwembe (Naivas Mall)">🏬 Mwembe — Naivas Mall</option>
+        </select>
+        <div class="err">Please choose a pickup point.</div>
+      </div>
+
+      <div class="field" id="busField" style="display:none">
+        <label for="coBus">Bus Company *</label>
+        <select id="coBus">
+          <option value="">— Select your county first —</option>
+        </select>
+        <div class="err">Please choose a bus company.</div>
+      </div>
+
+      <div class="field">
+        <label for="coEstate">Estate / Town & Landmark *</label>
+        <input id="coEstate" type="text" maxlength="100" placeholder="e.g. Kizingo, near Archview Hotel">
+        <div class="err">Please enter your estate / landmark.</div>
+      </div>
+
+      <div class="field">
+        <label for="coNotes">Notes (optional)</label>
+        <textarea id="coNotes" rows="2" maxlength="200" placeholder="Sizes to confirm, preferred delivery time…"></textarea>
+      </div>
+
+      <div class="lock-note" style="margin:0 0 12px;font-size:.8rem">🗓 <span><strong>Delivery days:</strong> Mombasa rider — every Friday · Parcels — Thursdays twice a month (Coast: Tahmeed / Mash Poa · Others: Ena Coach / Mash Poa / Tahmeed). Free pickup at Posta or Mwembe Naivas Mall. We confirm your exact date on WhatsApp.</span></div>
+      <div class="fee-line"><span>Items total:</span><span id="feeItems">KSh 0</span></div>
+      <div class="fee-line" id="lineBus" style="display:none"><span>Bus parcel fee:</span><span id="feeBus">—</span></div>
+      <div class="fee-line" id="lineService" style="display:none"><span>Service fee ($0.50):</span><span id="feeService">—</span></div>
+      <div class="fee-line"><span>Delivery:</span><span id="feeDelivery">Free</span></div>
+      <div class="grand"><span>Total:</span><span id="feeGrand">KSh 0</span></div>
+
+      <button class="send-btn" onclick="placeOrder()">✅ Send Order via WhatsApp</button>
+      <div class="privacy-note">🔒 <span>Your details go straight to our WhatsApp chat — nothing is stored on this website. No account needed.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Phone prompt modal -->
+<div class="modal" id="phoneModal" role="dialog" aria-label="Phone number required">
+  <div class="modal-box">
+    <h3>📱 One quick step…</h3>
+    <p>Please enter your phone number so we can reach you about your order (delivery updates, M-Pesa confirmation).</p>
+    <div class="field">
+      <label for="promptPhone">Your Phone Number *</label>
+      <input id="promptPhone" type="tel" maxlength="13" placeholder="07XX XXX XXX" autocomplete="tel" inputmode="tel">
+      <div class="err">Enter a valid Kenyan number (07XX / +2547XX).</div>
+    </div>
+    <div class="modal-actions">
+      <button class="cancel-btn" onclick="closePhoneModal()">Cancel</button>
+      <button class="send-btn" onclick="confirmPhone()">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const WHATSAPP = "2547XXXXXXXX"; // ← replace with your WhatsApp number (e.g. "254712345678")
+
+const COUNTIES = ["Baringo","Bomet","Bungoma","Busia","Elgeyo-Marakwet","Embu","Garissa","Homa Bay","Isiolo","Kajiado","Kakamega","Kericho","Kiambu","Kilifi","Kirinyaga","Kisii","Kisumu","Kitui","Kwale","Laikipia","Lamu","Machakos","Makueni","Mandera","Marsabit","Meru","Migori","Mombasa","Murang'a","Nairobi","Nakuru","Nandi","Narok","Nyamira","Nyandarua","Nyeri","Samburu","Siaya","Taita-Taveta","Tana River","Tharaka-Nithi","Trans Nzoia","Turkana","Uasin Gishu","Vihiga","Wajir","West Pokot"];
+const COAST = new Set(["Mombasa","Kwale","Kilifi","Tana River","Lamu","Taita-Taveta"]);
+
+// ============================================================
+// ✏️ EDIT THIS SECTION — BUS PARCEL RATES (KSh per parcel)
+// Delivery fee = bus company rate for the destination + service fee.
+// Update these numbers whenever the bus companies change their fares!
+// "coast" = rate for coastal counties, "default" = rate for any other
+// county not listed under "counties". Ena Coach does not serve the Coast.
+// ============================================================
+const SERVICE_FEE_KES = 65; // flat $0.50 service charge (≈ KSh 65)
+const BUS_RATES = {
+  "Tahmeed": {
+    coast: 200, default: 400,
+    counties: { "Nairobi":350, "Nakuru":400, "Kisumu":450, "Eldoret":450, "Kericho":430, "Bungoma":450, "Busia":470, "Kakamega":450, "Kisii":470, "Machakos":380, "Kitui":420 }
+  },
+  "Mash Poa": {
+    coast: 200, default: 400,
+    counties: { "Nairobi":350, "Nakuru":400, "Kisumu":450, "Eldoret":450, "Kericho":430, "Bungoma":450, "Busia":470, "Kakamega":450, "Machakos":380 }
+  },
+  "Ena Coach": {
+    coast: null, default: 350, // null = not available in coastal counties
+    counties: { "Nairobi":350, "Nakuru":350, "Eldoret":400, "Kitui":350, "Machakos":350, "Embu":350, "Meru":350, "Chuka":350 }
+  }
+};
+
+// Returns the bus parcel rate for a county, or null if that bus doesn't serve it
+function getBusRate(bus, county){
+  const r = BUS_RATES[bus];
+  if(!r) return null;
+  if(COAST.has(county)) return r.coast;
+  return r.counties[county] ?? r.default;
+}
+
+const products = [
+  // ---------- BOYS ----------
+  {id:1,  cat:"boys",  icon:"👕", name:"Boys' T-Shirt Bundle (5 pc)", size:"Ages 3–8",     price:450, tag:"Best Seller"},
+  {id:2,  cat:"boys",  icon:"🩳", name:"Boys' Shorts (Denim & Cotton)", size:"Ages 2–10", price:150},
+  {id:3,  cat:"boys",  icon:"👖", name:"Boys' Jeans — Grade A", size:"Ages 4–12",        price:250},
+  {id:4,  cat:"boys",  icon:"🧥", name:"Boys' Hoodie / Jacket", size:"Ages 3–12",        price:350},
+  {id:15, cat:"boys",  icon:"👔", name:"Boys' Official Shirts (3 pc)", size:"Ages 4–12",  price:400},
+  {id:16, cat:"boys",  icon:"🩱", name:"Boys' Swimming Costumes", size:"Ages 3–10",      price:200},
+  {id:17, cat:"boys",  icon:"🧦", name:"Boys' Socks Bundle (6 pairs)", size:"All ages",  price:180},
+  {id:18, cat:"boys",  icon:"🎽", name:"Boys' Vests & Underwear (6 pc)", size:"Ages 2–12",price:250},
+  {id:19, cat:"boys",  icon:"🧢", name:"Boys' Caps & Beanies", size:"One size",          price:100},
+  {id:20, cat:"boys",  icon:"👘", name:"Boys' Tracksuits (2 pc set)", size:"Ages 3–12",   price:450, tag:"New"},
+  // ---------- GIRLS ----------
+  {id:5,  cat:"girls", icon:"👗", name:"Girls' Dress — Party & Casual", size:"Ages 2–10", price:300, tag:"New"},
+  {id:6,  cat:"girls", icon:"👚", name:"Girls' Tops Bundle (5 pc)", size:"Ages 3–9",     price:400},
+  {id:7,  cat:"girls", icon:"🩱", name:"Girls' Leggings / Tights", size:"Ages 2–8",      price:120},
+  {id:8,  cat:"girls", icon:"🧥", name:"Girls' Sweater / Cardigan", size:"Ages 3–12",    price:280},
+  {id:21, cat:"girls", icon:"👖", name:"Girls' Jeans & Jeggings", size:"Ages 3–12",      price:250},
+  {id:22, cat:"girls", icon:"🩰", name:"Girls' Skirts (School & Casual)", size:"Ages 3–10",price:180},
+  {id:23, cat:"girls", icon:"🌸", name:"Girls' Floral Summer Dresses", size:"Ages 2–8",  price:320, tag:"Best Seller"},
+  {id:24, cat:"girls", icon:"👙", name:"Girls' Swimming Costumes", size:"Ages 3–10",     price:200},
+  {id:25, cat:"girls", icon:"🧦", name:"Girls' Socks & Tights Bundle", size:"All ages",  price:180},
+  {id:26, cat:"girls", icon:"🎀", name:"Girls' Hair Accessories Set", size:"One size",   price:80},
+  // ---------- BABY ----------
+  {id:9,  cat:"baby",  icon:"🍼", name:"Baby Rompers (3 pc)", size:"0–24 months",       price:350},
+  {id:10, cat:"baby",  icon:"👶", name:"Baby Onesies & Vests (5 pc)", size:"0–18 months",price:300},
+  {id:11, cat:"baby",  icon:"🧸", name:"Baby Blankets & Shukas", size:"One size",        price:200},
+  {id:27, cat:"baby",  icon:"🧷", name:"Baby Bodysuits — Cotton (4 pc)", size:"0–12 months",price:320},
+  {id:28, cat:"baby",  icon:"👕", name:"Baby T-Shirts & Shorts Sets", size:"6–24 months", price:280},
+  {id:29, cat:"baby",  icon:"🧤", name:"Baby Sweaters & Cardigans", size:"0–24 months",  price:250},
+  {id:30, cat:"baby",  icon:"🩲", name:"Baby Diaper Covers (4 pc)", size:"0–18 months",  price:200},
+  {id:31, cat:"baby",  icon:"🧢", name:"Baby Hats & Headwarmers", size:"0–12 months",    price:100},
+  {id:32, cat:"baby",  icon:"🧤", name:"Baby Mittens & Booties Set", size:"0–12 months",  price:150},
+  {id:33, cat:"baby",  icon:"🛁", name:"Baby Towels & Washcloths (3 pc)", size:"One size",price:220, tag:"New"},
+];
+
+let cart = [];
+let delivery = {fee:0, label:"Pickup (Mombasa)"};
+
+const $ = id => document.getElementById(id);
+const fmt = n => "KSh " + n.toLocaleString();
+
+/* ---------- Products ---------- */
+function render(cat="all"){
+  $("productGrid").innerHTML = "";
+  const list = products.filter(p => cat==="all" || p.cat===cat);
+  const label = cat==="all" ? "the whole collection" : ({boys:"Boys", girls:"Girls", baby:"Baby (0–2 yrs)"})[cat];
+  $("stockCount").textContent = `👕 Showing ${list.length} items in ${label} — tap another genre above to browse more`;
+  list.forEach(p => {
+    $("productGrid").insertAdjacentHTML("beforeend", `
+      <div class="card">
+        <div class="img">${p.icon}</div>
+        <div class="body">
+          <h3>${p.name}</h3>
+          <div class="size">${p.size}</div>
+          ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
+          <div class="price-row">
+            <span class="price">${fmt(p.price)}</span>
+            <button class="add" onclick="addToCart(${p.id})">+ Add</button>
+          </div>
+        </div>
+      </div>`);
+  });
+}
+
+$("filters").addEventListener("click", e => {
+  if(!e.target.dataset.cat) return;
+  document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  e.target.classList.add("active");
+  render(e.target.dataset.cat);
+});
+
+/* ---------- Cart ---------- */
+function addToCart(id){
+  cart.push(products.find(x => x.id===id));
+  updateCart();
+  toast("Added to basket ✅", "success");
+  bumpCartIcon();
+}
+function removeFromCart(i){ cart.splice(i,1); updateCart(); }
+
+function updateCart(){
+  $("cartCount").textContent = cart.length;
+  const box = $("cartItems");
+  if(!cart.length){
+    box.innerHTML = `<p class="empty">Basket is empty.<br>Chagua nguo hapo juu 👆</p>`;
+    $("coForm").classList.remove("show");
+    $("coToggle").style.display = "none";
+  } else {
+    $("coToggle").style.display = "block";
+    box.innerHTML = cart.map((p,i) => `
+      <div class="cart-item">
+        <span>${p.icon} ${p.name}</span>
+        <span>${fmt(p.price)} <button onclick="removeFromCart(${i})" aria-label="Remove">✕</button></span>
+      </div>`).join("");
+  }
+  updateFees();
+}
+
+function bumpCartIcon(){
+  const b = document.querySelector(".cart-btn");
+  b.style.transform = "scale(1.08)";
+  setTimeout(() => b.style.transform = "", 180);
+}
+
+/* ---------- Drawer ---------- */
+function openCart(){ $("cartDrawer").classList.add("open"); $("overlay").classList.add("show"); document.body.style.overflow="hidden"; }
+function closeCart(){ $("cartDrawer").classList.remove("open"); $("overlay").classList.remove("show"); document.body.style.overflow=""; }
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeCart(); });
+
+/* ---------- Checkout form ---------- */
+let phoneConfirmed = false;
+
+function toggleCheckoutForm(){
+  if(!cart.length){ toast("Your basket is empty!"); return; }
+  if(!phoneConfirmed){
+    openPhoneModal();
+    return;
+  }
+  $("coForm").classList.toggle("show");
+  $("coToggle").textContent = $("coForm").classList.contains("show") ? "▼ Hide Checkout" : "Proceed to Checkout →";
+}
+
+/* ---------- Phone prompt ---------- */
+function openPhoneModal(){
+  $("phoneModal").classList.add("show");
+  setTimeout(() => $("promptPhone").focus(), 150);
+}
+function closePhoneModal(){
+  $("phoneModal").classList.remove("show");
+  $("promptPhone").closest(".field").classList.remove("invalid");
+}
+function confirmPhone(){
+  const num = $("promptPhone").value.replace(/[\s-]/g, "");
+  if(!/^(?:\+254|0)7\d{8}$/.test(num)){
+    $("promptPhone").closest(".field").classList.add("invalid");
+    $("promptPhone").focus();
+    return;
+  }
+  $("promptPhone").closest(".field").classList.remove("invalid");
+  phoneConfirmed = true;
+  $("coPhone").value = num;
+  closePhoneModal();
+  $("coForm").classList.add("show");
+  $("coToggle").textContent = "▼ Hide Checkout";
+  toast("Number saved — fill in your delivery details ✅", "success");
+}
+
+$("promptPhone").addEventListener("keydown", e => { if(e.key === "Enter") confirmPhone(); });
+$("phoneModal").addEventListener("click", e => { if(e.target === $("phoneModal")) closePhoneModal(); });
+
+// County dropdown
+$("coCounty").innerHTML = `<option value="">— Select your county —</option>` +
+  COUNTIES.map(c => `<option value="${c}">${c}</option>`).join("");
+
+// Delivery option cards
+$("deliveryOpts").addEventListener("click", e => {
+  const card = e.target.closest(".radio-card");
+  if(!card) return;
+  document.querySelectorAll(".radio-card").forEach(c => c.classList.remove("sel"));
+  card.classList.add("sel");
+  const fee = card.dataset.fee;
+  delivery.label = card.dataset.label;
+  $("countyField").style.display = fee === "parcel" ? "block" : "none";
+  $("pickupField").style.display = fee === "0" ? "block" : "none";
+  $("busField").style.display = fee === "parcel" ? "block" : "none";
+  delivery.fee = fee === "parcel" ? null : parseInt(fee, 10); // null = depends on county
+  $("coCounty").closest(".field").classList.remove("invalid");
+  $("coPickup").closest(".field").classList.remove("invalid");
+  $("coBus").closest(".field").classList.remove("invalid");
+  updateFees();
+});
+
+// Bus companies per region
+const BUS_COAST = ["Tahmeed","Mash Poa"];
+const BUS_OTHER = ["Ena Coach","Mash Poa","Tahmeed"];
+
+$("coCounty").addEventListener("change", () => {
+  const c = $("coCounty").value;
+  const buses = COAST.has(c) ? BUS_COAST : BUS_OTHER;
+  $("coBus").innerHTML = `<option value="">— Choose bus company —</option>` +
+    buses.map(b => `<option value="${b}">🚌 ${b}</option>`).join("");
+  $("coBus").value = "";
+});
+
+$("coCounty").addEventListener("change", updateFees);
+
+function currentFees(){
+  const items = cart.reduce((s,p) => s + p.price, 0);
+  let fee = 0, feeLabel = "Free", busFee = null;
+  if(delivery.fee === null){
+    const c = $("coCounty").value, b = $("coBus").value;
+    if(c && b){
+      busFee = getBusRate(b, c);
+      if(busFee === null){ fee = null; feeLabel = b + " doesn't serve " + c; }
+      else { fee = busFee + SERVICE_FEE_KES; feeLabel = fmt(fee) + " (" + b + " to " + c + ")"; }
+    } else { fee = null; feeLabel = "Select county & bus…"; }
+  } else if(delivery.fee > 0){ fee = delivery.fee; feeLabel = fmt(fee); }
+  return {items, fee, feeLabel, busFee, grand: fee === null ? null : items + fee};
+}
+
+function updateFees(){
+  const {items, fee, feeLabel, busFee, grand} = currentFees();
+  $("feeItems").textContent = fmt(items);
+  $("feeDelivery").textContent = feeLabel;
+  $("feeGrand").textContent = grand === null ? "—" : fmt(grand);
+  $("cartTotal").textContent = fmt(items);
+  const isParcel = delivery.fee === null;
+  $("lineBus").style.display = isParcel ? "flex" : "none";
+  $("lineService").style.display = isParcel ? "flex" : "none";
+  $("feeBus").textContent = busFee === null || busFee === undefined ? "—" : fmt(busFee);
+  $("feeService").textContent = fmt(SERVICE_FEE_KES);
+}
+
+/* ---------- Security helpers ---------- */
+// Strip anything that could inject markup/scripts into the WhatsApp message
+function sanitize(str){
+  return String(str).replace(/[<>&"'\`]/g, "").replace(/(https?:)?\/\//gi, "").trim().slice(0, 140);
+}
+
+function validate(){
+  let ok = true;
+  const check = (id, valid) => {
+    $(id).closest(".field").classList.toggle("invalid", !valid);
+    if(!valid) ok = false;
+  };
+  check("coName", $("coName").value.trim().length >= 2);
+  check("coPhone", /^(?:\+254|0)7\d{8}$/.test($("coPhone").value.replace(/[\s-]/g, "")));
+  check("coEstate", $("coEstate").value.trim().length >= 3);
+  if(delivery.fee === null){
+    check("coCounty", !!$("coCounty").value);
+    check("coBus", !!$("coBus").value);
+  } else {
+    $("coCounty").closest(".field").classList.remove("invalid");
+    $("coBus").closest(".field").classList.remove("invalid");
+  }
+  if(delivery.fee === 0) check("coPickup", !!$("coPickup").value);
+  else $("coPickup").closest(".field").classList.remove("invalid");
+  return ok;
+}
+
+["coName","coPhone","coEstate"].forEach(id =>
+  $(id).addEventListener("input", () => $(id).closest(".field").classList.remove("invalid")));
+
+/* ---------- Place order ---------- */
+function placeOrder(){
+  if(!cart.length){ toast("Your basket is empty!"); return; }
+  if(!validate()){
+    toast("Please fix the highlighted fields ⚠️");
+    const firstErr = document.querySelector(".field.invalid input, .field.invalid select");
+    if(firstErr) firstErr.focus();
+    return;
+  }
+  const name    = sanitize($("coName").value);
+  const phone   = sanitize($("coPhone").value.replace(/[\s-]/g, ""));
+  const county  = sanitize($("coCounty").value);
+  const pickup  = sanitize($("coPickup").value);
+  const bus     = sanitize($("coBus").value);
+  const estate  = sanitize($("coEstate").value);
+  const notes   = sanitize($("coNotes").value);
+  const {items, fee, feeLabel, grand} = currentFees();
+
+  const lines = cart.map(p => `• ${p.name} (${p.size}) — ${fmt(p.price)}`).join("\n");
+  const msg =
+`Hello Havannah Kids Closet! 👋 New order:
+
+🛍 ORDER
+${lines}
+
+💰 Items: ${fmt(items)}
+🚚 Delivery (${delivery.label}): ${feeLabel}
+${delivery.fee === null && fee !== null ? "   (Bus fee " + fmt(busFee) + " + service fee " + fmt(SERVICE_FEE_KES) + ")\n" : ""}✅ TOTAL: ${fmt(grand)}
+
+📍 DELIVERY
+Name: ${name}
+Phone: ${phone}
+${delivery.fee === 0 ? "Pickup point: " + pickup + "\n" : ""}${delivery.fee === null ? "County: " + county + "\nBus company: " + bus + "\n" : ""}Estate/Landmark: ${estate}
+${notes ? "Notes: " + notes + "\n" : ""}
+Awaiting your confirmation. Asante! 🙏`;
+
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+  toast("Order prepared — finish in WhatsApp 💬", "success");
+}
+
+/* ---------- Toast ---------- */
+let toastTimer;
+function toast(msg, type=""){
+  const t = $("toast");
+  t.textContent = msg;
+  t.className = "toast show " + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
+}
+
+// Wire up WhatsApp / call / SMS links from the WHATSAPP constant above
+const waUrl  = `https://wa.me/${WHATSAPP}`;
+const telUrl = `tel:+${WHATSAPP}`;
+const smsUrl = `sms:+${WHATSAPP}`;
+document.querySelectorAll(".wa-link").forEach(a => { a.href = waUrl; });
+document.querySelectorAll(".call-link").forEach(a => { a.href = telUrl; });
+document.querySelectorAll(".sms-link").forEach(a => { a.href = smsUrl; });
+
+document.getElementById("yr").textContent = new Date().getFullYear();
+render();
+updateCart();
+</script>
+</body>
+</html>
